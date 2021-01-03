@@ -1,0 +1,9 @@
+#!/bin/bash
+
+echo $1 > /etc/hostname
+echo "127.0.0.1	localhost.localdomain	localhost" >> /etc/hosts
+echo "::1		localhost.localdomain	localhost" >> /etc/hosts
+echo "127.0.1.1		$1.$2 $1" >> /etc/hosts
+mkinitcpio -P
+
+echo "Terminou script hostname-hosts"
