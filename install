@@ -9,6 +9,5 @@ swapon /mnt/swapfile
 # Instalando arch com espeakup
 pacstrap /mnt base linux linux-firmware espeakup alsa-utils grub efibootmgr nano networkmanager links
 genfstab -U /mnt >> /mnt/etc/fstab
-arch-chroot /mnt
-
 echo "Terminou swap-install"
+arch-chroot /mnt
