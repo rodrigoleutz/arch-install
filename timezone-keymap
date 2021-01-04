@@ -1,0 +1,10 @@
+#!/bin/bash
+
+ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
+hwclock --systohc
+echo "pt_BR.UTF-8 UTF-8" >> /etc/locale.gen
+locale-gen
+echo "LANG=pt_BR.UTF-8" > /etc/locale.conf
+echo "KEYMAP=$1" > /etc/vconsole.conf
+
+echo "Terminou script swap-install-keymap"

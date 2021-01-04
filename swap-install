@@ -10,11 +10,6 @@ swapon /mnt/swapfile
 pacstrap /mnt base linux linux-firmware espeakup alsa-utils grub efibootmgr nano networkmanager links
 genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
-ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
-hwclock --systohc
-echo "pt_BR.UTF-8 UTF-8" >> /etc/locale.gen
-locale-gen
-echo "LANG=pt_BR.UTF-8" > /etc/locale.conf
-echo "KEYMAP=$2" > /etc/vconsole.conf
 
-echo "Terminou script swap-install-keymap"
+echo "Terminou swap-install"
+
