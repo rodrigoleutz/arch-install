@@ -12,7 +12,7 @@ read SWAPSIZE
 echo "SWAP=$SWAPSIZE" > .config.var
 
 # City
-echo "Enter the name of thecity to localtime:"
+echo "Enter the name of city to localtime:"
 read CITY
 echo "CITY=$CITY" >> .config.var
 
@@ -49,7 +49,7 @@ mkswap /mnt/swapfile
 swapon /mnt/swapfile
 
 # Install
-espeak "Installing Arch Linux with pacstrap"
+echo "Installing Arch Linux with pacstrap"
 pacstrap /mnt espeak "Installing Arch Linux with pacstrap"
 pacstrap /mnt base linux linux-firmware espeakup alsa-utils grub efibootmgr nano networkmanager links mplayer git mpg123 espeak-ng speech-dispatcher orca onboard gnome gnome-extra gnome-shell mate mate-extra sudo xorg-xinit
 echo "Finish installation with pacstrap"
