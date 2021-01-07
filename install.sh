@@ -9,7 +9,6 @@ read KEYMAP
 echo "KEYMAP=$KEYMAP" >> .config.var
 
 loadkeys $KEYMAP
-timedatectl set-ntp true
 mkdir -p /mnt/espeakup-install
 cd /mnt/espeakup-install
 
@@ -42,6 +41,9 @@ echo "LOCALDOMAIN=$LOCALDOMAIN" >> .config.var
 echo "Enter the user name to use this computer"
 read USERNAME
 echo "USERNAME=$USERNAME" >> .config.var
+
+# Timedate
+timedatectl set-ntp true
 
 # Make Swap
 echo "Start make swap with $SWAPSIZE megabytes"
