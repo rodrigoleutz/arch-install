@@ -76,5 +76,10 @@ echo "orca &" >> /home/$USERNAME/.xinitrc
 echo "exec mate-session" >> /home/$USERNAME/.xinitrc
 echo "sudo systemctl stop espeakup" >> /home/$USERNAME/.bashrc
 echo "startx" >> /home/$USERNAME/.bashrc
+
+# ufw
+ufw enable
+systemctl enable ufw
+
 rm -rf /espeakup-install
-echo "Now type exit and reboot to reboot the system"
+echo "Now type reboot to reboot the system"
