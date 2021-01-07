@@ -3,6 +3,13 @@
 ## Projeto:     Acessibilidade na instalação do Arch Linux
 ## Autor:       Rodrigo Leutz
 
+# KEYMAP
+echo "Enter the keymap of your keyboard like br-abnt2"
+read KEYMAP
+echo "KEYMAP=$KEYMAP" >> .config.var
+
+loadkeys $KEYMAP
+timedatectl set-ntp true
 mkdir -p /mnt/espeakup-install
 cd /mnt/espeakup-install
 
@@ -20,11 +27,6 @@ echo "CITY=$CITY" >> .config.var
 echo "Enter the chaset encode like pt_BR.UTF-8"
 read CHARSETENC
 echo "CHARSET=$CHARSETENC" >> .config.var
-
-# KEYMAP
-echo "Enter the keymap of your keyboard like br-abnt2"
-read KEYMAP
-echo "KEYMAP=$KEYMAP" >> .config.var
 
 # Hostname
 echo "Enter the hostname"

@@ -41,9 +41,15 @@ echo "Install grub"
 grub-install --target=x86_64-efi --bootloader-id=grub_uefi
 grub-mkconfig -o /boot/grub/grub.cfg
 systemctl enable NetworkManager
-echo "Wait enter key to type passwd"
+echo "Wait enter key to type passwd 1/5"
 read
-echo "Press enter again to type root password"
+echo "Wait enter key to type passwd 2/5"
+read
+echo "Wait enter key to type passwd 3/5"
+read
+echo "Wait enter key to type passwd 4/5"
+read
+echo "Wait enter key to type passwd 5/5"
 read
 # Users
 echo "Type root password twice"
