@@ -52,7 +52,7 @@ swapon /mnt/swapfile
 
 # Install
 echo "Installing Arch Linux with pacstrap"
-pacstrap /mnt base linux linux-firmware espeakup alsa-utils grub efibootmgr nano networkmanager links mplayer git mpg123 espeak-ng speech-dispatcher orca onboard gnome gnome-extra gnome-shell mate mate-extra sudo xorg-xinit
+pacstrap /mnt base linux linux-firmware espeakup alsa-utils grub efibootmgr nano networkmanager links git espeak-ng speech-dispatcher orca onboard xorg xorg-server mate mate-extra sudo xorg-xinit
 echo "Finish installation with pacstrap"
 echo "Generating fstab"
 genfstab -U /mnt >> /mnt/etc/fstab
