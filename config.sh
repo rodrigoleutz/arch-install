@@ -41,7 +41,10 @@ echo "Install grub"
 grub-install --target=x86_64-efi --bootloader-id=grub_uefi
 grub-mkconfig -o /boot/grub/grub.cfg
 systemctl enable NetworkManager
-
+echo "Wait enter key to type passwd"
+read
+echo "Press enter again to type root password"
+read
 # Users
 echo "Type root password twice"
 passwd
@@ -50,7 +53,7 @@ USERNAME=`get_var USERNAME`
 useradd -m $USERNAME
 echo "Type $USERNAME password twice"
 passwd $USERNAME
-espeak "Password for $USERNAME work"
+echo "Password for $USERNAME work"
 echo "$USERNAME ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 systemctl enable espeakup
 alsactl store
