@@ -59,10 +59,6 @@ systemctl enable espeakup
 alsactl store
 
 # Orca
-pacman -U mbrola-3.0.1h-5-x86_64.pkg.tar.xz
-pacman -U mbrola-voices-br1-971105-5-any.pkg.tar.xz
-pacman -U mbrola-voices-br4-1-2-any.pkg.tar.xz
-pacman -U mbrola-voices-br3-000119-4-any.pkg.tar.xz
 cd /espeakup-install
 mkdir orca-install
 cd orca-install
@@ -74,5 +70,5 @@ echo "orca &" >> /home/$USERNAME/.xinitrc
 echo "exec mate-session" >> /home/$USERNAME/.xinitrc
 echo "sudo systemctl stop espeakup" >> /home/$USERNAME/.bashrc
 echo "startx" >> /home/$USERNAME/.bashrc
+rm -rf /espeakup-install
 echo "Now type exit and reboot to reboot the system"
-
