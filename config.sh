@@ -36,18 +36,19 @@ echo "::1               localhost.localdomain   localhost" >> /etc/hosts
 echo "127.0.1.1         $HOSTNAMEINP.$LOCALDOMAIN $HOSTNAMEINP" >> /etc/hosts
 
 # Finish install
-mkinitcpio -P
-espeak "Install grub"
+# mkinitcpio -P
+echo "Install grub"
 grub-install --target=x86_64-efi --bootloader-id=grub_uefi
 grub-mkconfig -o /boot/grub/grub.cfg
 systemctl enable NetworkManager
 
 # Users
-espeak "Type root password twice"
+echo "Type root password twice"
 passwd
-espeak "Password for root work"
+echo "Password for root work"
 USERNAME=`get_var USERNAME`
 useradd -m $USERNAME
+echo "Type $USERNAME password twice"
 passwd $USERNAME
 espeak "Password for $USERNAME work"
 echo "$USERNAME ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
@@ -70,6 +71,5 @@ echo "orca &" >> /home/$USERNAME/.xinitrc
 echo "exec mate-session" >> /home/$USERNAME/.xinitrc
 echo "sudo systemctl stop espeakup" >> /home/$USERNAME/.bashrc
 echo "startx" >> /home/$USERNAME/.bashrc
-espeak "Now type exit and reboot to reboot the system"
-systemctl start espeakup
+echo "Now type exit and reboot to reboot the system"
 
