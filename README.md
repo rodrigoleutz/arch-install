@@ -6,6 +6,8 @@ Autor:	Rodrigo Leutz<br>
 
 Desktop mate com orca ativado<br>
 
+<a href="https://www.youtube.com/watch?v=OFdDz6o2eRk">Vídeo da instalação</a><br>
+
 <h3>Instalação:</h3>
 Particione o hd<br>
 Formate as partições<br>
