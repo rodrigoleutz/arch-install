@@ -38,20 +38,19 @@ echo "127.0.1.1         $HOSTNAMEINP.$LOCALDOMAIN $HOSTNAMEINP" >> /etc/hosts
 # Finish install
 # mkinitcpio -P
 echo "Install grub"
-grub-install --target=x86_64-efi --bootloader-id=grub_uefi
+BOOT=`get_var BOOT`
+if [[ "$BOOT" == 1 ]]; then
+	DEVICE=`get_var DEVICE`
+	grub-install $DEVICE
+else
+	grub-install --target=x86_64-efi --bootloader-id=grub_uefi
+fi
 grub-mkconfig -o /boot/grub/grub.cfg
 systemctl enable NetworkManager
-echo "Wait enter key to type passwd 1/5"
+
+# PASSWD
+echo "Wait enter key to type passwd"
 read
-echo "Wait enter key to type passwd 2/5"
-read
-echo "Wait enter key to type passwd 3/5"
-read
-echo "Wait enter key to type passwd 4/5"
-read
-echo "Wait enter key to type passwd 5/5"
-read
-# Users
 echo "Type root password twice"
 passwd
 echo "Password for root work"
