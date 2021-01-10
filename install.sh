@@ -8,6 +8,10 @@ save_config(){
 	echo "$1=$2" >> /mnt/espeakup-install/.config.var
 }
 
+# Create DIR
+mkdir -p /mnt/espeakup-install
+cd /mnt/espeakup-install
+
 # Boot type
 echo "Enter the boot type of your computer"
 echo "1 = Bios legacy"
@@ -24,8 +28,6 @@ save_config BOOT $BOOT
 echo "Enter the keymap of your keyboard like br-abnt2"
 read KEYMAP
 loadkeys $KEYMAP
-mkdir -p /mnt/espeakup-install
-cd /mnt/espeakup-install
 save_config KEYMAP $KEYMAP
 
 # Swap size info
