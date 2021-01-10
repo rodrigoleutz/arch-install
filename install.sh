@@ -18,7 +18,7 @@ echo "1 = Bios legacy"
 echo "2 = UEFI"
 read BOOT
 if [[ "$BOOT" == 1 ]]; then
-	echo "Enter the device for boot"
+	echo "Enter the device for boot like vda OR sda"
 	read DEVICE
 	save_config DEVICE "/dev/$DEVICE"
 fi
@@ -61,7 +61,7 @@ read USERNAME
 save_config USERNAME $USERNAME
 
 # Stop Time
-echo "Now type ENTER to continue intallation OR CTRL+C to abort"
+echo "Now hit ENTER to continue intallation OR CTRL+C to abort"
 read
 
 # Timedate

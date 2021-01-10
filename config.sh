@@ -36,16 +36,16 @@ echo "::1               localhost.localdomain   localhost" >> /etc/hosts
 echo "127.0.1.1         $HOSTNAMEINP.$LOCALDOMAIN $HOSTNAMEINP" >> /etc/hosts
 
 # PASSWD
-echo "Wait enter key to type passwd"
+echo "Hit enter key to type password of root AND $USENAME"
 read
 echo "Type root password twice"
 passwd
-echo "Password for root work"
+echo "Password for root complete"
 USERNAME=`get_var USERNAME`
 useradd -m $USERNAME
 echo "Type $USERNAME password twice"
 passwd $USERNAME
-echo "Password for $USERNAME work"
+echo "Password for $USERNAME complete"
 echo "$USERNAME ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 # Finish install
