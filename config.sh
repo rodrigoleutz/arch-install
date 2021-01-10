@@ -35,6 +35,19 @@ echo "127.0.0.1 localhost.localdomain   localhost" >> /etc/hosts
 echo "::1               localhost.localdomain   localhost" >> /etc/hosts
 echo "127.0.1.1         $HOSTNAMEINP.$LOCALDOMAIN $HOSTNAMEINP" >> /etc/hosts
 
+# PASSWD
+echo "Wait enter key to type passwd"
+read
+echo "Type root password twice"
+passwd
+echo "Password for root work"
+USERNAME=`get_var USERNAME`
+useradd -m $USERNAME
+echo "Type $USERNAME password twice"
+passwd $USERNAME
+echo "Password for $USERNAME work"
+echo "$USERNAME ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+
 # Finish install
 # mkinitcpio -P
 echo "Install grub"
@@ -48,18 +61,7 @@ fi
 grub-mkconfig -o /boot/grub/grub.cfg
 systemctl enable NetworkManager
 
-# PASSWD
-echo "Wait enter key to type passwd"
-read
-echo "Type root password twice"
-passwd
-echo "Password for root work"
-USERNAME=`get_var USERNAME`
-useradd -m $USERNAME
-echo "Type $USERNAME password twice"
-passwd $USERNAME
-echo "Password for $USERNAME work"
-echo "$USERNAME ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+# Enable espeakup
 systemctl enable espeakup
 alsactl store
 
