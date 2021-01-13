@@ -48,7 +48,7 @@ gpasswd -a $USERNAME wheel
 # Finish install
 # mkinitcpio -P
 BOOT=`get_var BOOT`
-if [[ "$BOOT" == "no" ]]; then
+if [[ "$BOOT" -eq "no" ]]; then
 	DEVICE=`get_var DEVICE`
 	grub-install $DEVICE
 else
@@ -56,6 +56,7 @@ else
 fi
 grub-mkconfig -o /boot/grub/grub.cfg
 systemctl enable NetworkManager
+systemctl enable sddm
 
 echo "exec startplasma-x11" >> /home/$USERNAME/.xinitrc
 
