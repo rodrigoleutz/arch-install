@@ -6,15 +6,18 @@
     src: install.sh
     dest: install.sh
     mode: 777
+  when: "'arch'in group_names"
 
 - name: Arch Linux | Copy config.sh
   copy:
     src: config.sh
     dest: config.sh
     mode: 777
+  when: "'arch' in group_names"
 
 - name: Arch Linux | Start Install Script
   shell: ./install.sh
+  when: "'arch' in group_names"
 
 - name: Arch Linux | Setting basic SSH Options
   lineinfile:
@@ -25,14 +28,20 @@
     backrefs=yes
   with_items:
     - { regexp: '#Port 22', line: 'Port 22' }
-    - { regexp: '#PermitRootLogin yes', line: 'PermitRootLogin yes' }
+    - { regexp: '#PermitRootLogin prohibit-password', line: 'PermitRootLogin yes' }
     - { regexp: 'Banner none', line: 'Banner /etc/ssh/banner_ssh' }
-    - { regexp: 'X11Forwarding yes', line: 'X11Forwarding no' }
+    - { regexp: '#X11Forwarding no', line: 'X11Forwarding no' }
+  when: "'arch' in group_names"
 
 - name: Arch Install | Copy SSH Banner File
   copy:
     src=banner_ssh
     dest=/mnt/etc/ssh/banner_ssh
+  when: "'arch' in group_names"
+
+- name: Arch Linux | Delete known_hosts in local
+  shell: rm ~/.ssh/known_hosts
+  when: "'local' in group_names"
 
 - name: Arch Linux | Reboot
   reboot:
@@ -42,13 +51,14 @@
     pre_reboot_delay: 0
     post_reboot_delay: 20
     test_command: whoami
+  when: "'arch' in group_names"
 
 - name: Arch Linux | Disable SSHd
   systemd:
     name: sshd
     enabled: no
+  when: "'arch' in group_names"
   notify:
     Arch Linux | Finish
-
 
 ...

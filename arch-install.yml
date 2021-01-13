@@ -2,11 +2,11 @@
 # Arch Linux install
 
 - name: Arch Linux | Install
-  hosts: archinstall
+  hosts: all
   roles:
     - arch-install
   vars:
-    new_user: rleutz
+    new_user: archuser
     new_user_passwd: senha321
     hostname: archlinuxvm
     localdomain: sempreupdate
