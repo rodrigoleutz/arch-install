@@ -1,1 +1,1 @@
-<host mac="52:54:00:86:43:68" name="archlinux.sempreupdate" ip="192.168.123.11"/>
+<host mac="52:54:00:86:43:68" name="archlinuxvm.sempreupdate" ip="192.168.123.11"/>

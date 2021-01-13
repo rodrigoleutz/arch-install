@@ -41,6 +41,12 @@
 
 - name: Arch Linux | Delete known_hosts in local
   shell: rm ~/.ssh/known_hosts
+  warn: False
+  when: "'local' in group_names"
+
+- name: Arch Linux | Move back original known_hosts
+  shell: mv ~/.ssh/known_hosts-old ~/.ssh/known_hosts
+  warn: False
   when: "'local' in group_names"
 
 - name: Arch Linux | Reboot
