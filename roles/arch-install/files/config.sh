@@ -57,11 +57,6 @@ fi
 grub-mkconfig -o /boot/grub/grub.cfg
 systemctl enable NetworkManager
 systemctl enable sddm
-
-echo "exec startplasma-x11" >> /home/$USERNAME/.xinitrc
-
-# ufw
-ufw enable
-systemctl enable ufw
+systemctl enable sshd
 
 rm -rf /espeakup-install

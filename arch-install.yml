@@ -1,0 +1,20 @@
+---
+# Arch Linux install
+
+- name: Arch Linux | Install
+  hosts: archinstall
+  roles:
+    - arch-install
+  vars:
+    new_user: rleutz
+    new_user_passwd: senha321
+    hostname: archlinuxvm
+    localdomain: sempreupdate
+    uefi_boot: no
+    device: vda
+    swapsize: 4096
+    keymap: us-acentos
+    localtime: Sao_Paulo
+    lang: pt_BR.UTF-8
+    arch_packages: plasma dolphin konsole git xorg-xinit firefox
+...

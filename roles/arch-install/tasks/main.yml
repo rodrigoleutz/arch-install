@@ -1,0 +1,54 @@
+---
+# tasks file for arch-install
+
+- name: Arch Linux | Copy install.sh
+  template:
+    src: install.sh
+    dest: install.sh
+    mode: 777
+
+- name: Arch Linux | Copy config.sh
+  copy:
+    src: config.sh
+    dest: config.sh
+    mode: 777
+
+- name: Arch Linux | Start Install Script
+  shell: ./install.sh
+
+- name: Arch Linux | Setting basic SSH Options
+  lineinfile:
+    dest=/mnt/etc/ssh/sshd_config
+    state=present
+    regexp={{ item.regexp }}
+    line={{ item.line }}
+    backrefs=yes
+  with_items:
+    - { regexp: '#Port 22', line: 'Port 22' }
+    - { regexp: '#PermitRootLogin yes', line: 'PermitRootLogin yes' }
+    - { regexp: 'Banner none', line: 'Banner /etc/ssh/banner_ssh' }
+    - { regexp: 'X11Forwarding yes', line: 'X11Forwarding no' }
+
+- name: Arch Install | Copy SSH Banner File
+  copy:
+    src=banner_ssh
+    dest=/mnt/etc/ssh/banner_ssh
+
+- name: Arch Linux | Reboot
+  reboot:
+    msg: "Reboot initiated by Ansible"
+    connect_timeout: 5
+    reboot_timeout: 160
+    pre_reboot_delay: 0
+    post_reboot_delay: 20
+    test_command: whoami
+
+- name: Arch Linux | Disable SSHd
+  systemd:
+    name: sshd
+    enabled: no
+  notify:
+    Arch Linux | Finish
+
+
+...

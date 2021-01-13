@@ -1,21 +1,16 @@
 # arch-install
 Arch install script<br>
-Instalação para acessibilidade<br>
+
+Automação da instalação do arch linux.
 
 Autor:	Rodrigo Leutz<br>
-
-Desktop mate com orca ativado<br>
 
 <a href="https://www.youtube.com/watch?v=OFdDz6o2eRk">Vídeo da instalação</a><br>
 
 <h3>Instalação:</h3>
-Particione o hd<br>
-Formate as partições<br>
-Necessário partição EFI<br>
-Monte as partições<br>
+- Ajuste o ip da máquina que será instalado no arquivo arch-host
+- 
 
-<h3>Execute:</h3> 
-curl https://raw.githubusercontent.com/rodrigoleutz/arch-install/main/install.sh > install.sh<br>
-chmod +x install.sh<br>
-./install.sh<br>
-Siga as instruções para completar a instalação<br>
+
+<h3>Execute:</h3>
+ansible-playbook -i arch-host
