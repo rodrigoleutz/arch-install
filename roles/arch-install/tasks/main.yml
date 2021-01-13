@@ -39,14 +39,8 @@
     dest=/mnt/etc/ssh/banner_ssh
   when: "'arch' in group_names"
 
-- name: Arch Linux | Delete known_hosts in local
+- name: Arch Linux | Remove known_hosts in local to reboot
   shell: rm ~/.ssh/known_hosts
-  when: "'local' in group_names"
-  args:
-    warn: no
-
-- name: Arch Linux | Move back original known_hosts
-  shell: mv ~/.ssh/known_hosts-old ~/.ssh/known_hosts
   when: "'local' in group_names"
   args:
     warn: no
