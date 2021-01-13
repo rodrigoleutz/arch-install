@@ -36,23 +36,19 @@ echo "::1               localhost.localdomain   localhost" >> /etc/hosts
 echo "127.0.1.1         $HOSTNAMEINP.$LOCALDOMAIN $HOSTNAMEINP" >> /etc/hosts
 
 # PASSWD
-echo "Hit enter key to type password of root AND $USENAME"
-read
-echo "Type root password twice"
-passwd
-echo "Password for root complete"
+ROOTPASSWD=`get_var ROOTPASSWD`
 USERNAME=`get_var USERNAME`
+USERPASSWD=`get_var USERPASSWD`
+echo -e "$ROOTPASSWD\n$ROOTPASSWD" | passwd
 useradd -m $USERNAME
-echo "Type $USERNAME password twice"
-passwd $USERNAME
-echo "Password for $USERNAME complete"
-echo "$USERNAME ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+echo -e "$USERPASSWD\n$USERPASSWD" | passwd $USERNAME
+echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
+gpasswd -a $USERNAME wheel
 
 # Finish install
 # mkinitcpio -P
-echo "Install grub"
 BOOT=`get_var BOOT`
-if [[ "$BOOT" == 1 ]]; then
+if [[ "$BOOT" == "no" ]]; then
 	DEVICE=`get_var DEVICE`
 	grub-install $DEVICE
 else
@@ -61,26 +57,10 @@ fi
 grub-mkconfig -o /boot/grub/grub.cfg
 systemctl enable NetworkManager
 
-# Enable espeakup
-systemctl enable espeakup
-alsactl store
-
-# Orca
-cd /espeakup-install
-mkdir orca-install
-cd orca-install
-git clone https://github.com/felipefacundes/brasiltts
-cd brasiltts
-cp *tts-generic.conf /etc/speech-dispatcher/modules/
-cp speechd.conf /etc/speech-dispatcher/
-echo "orca &" >> /home/$USERNAME/.xinitrc
-echo "exec mate-session" >> /home/$USERNAME/.xinitrc
-echo "sudo systemctl stop espeakup" >> /home/$USERNAME/.bashrc
-echo "startx" >> /home/$USERNAME/.bashrc
+echo "exec startplasma-x11" >> /home/$USERNAME/.xinitrc
 
 # ufw
 ufw enable
 systemctl enable ufw
 
 rm -rf /espeakup-install
-echo "Now type reboot to reboot the system"
